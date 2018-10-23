@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { axiosPost } from '../actions/postAction';
+import { getPost } from '../actions/postAction';
 
 class Post extends Component {
 
     componentWillMount() {
-        this.props.axiosPost();
+        this.props.getPost();
     }
 
     render() {
@@ -28,4 +28,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps,{ axiosPost })(Post);
+export default connect(mapStateToProps,{ getPost })(Post);
