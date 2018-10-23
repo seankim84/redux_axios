@@ -1,7 +1,7 @@
 import { AXIOS_POST } from '../actions/types';
 
 const initialState = {
-    keyword: ""
+    item: []
 };
 
 export default function(state = initialState, action){
@@ -10,7 +10,7 @@ export default function(state = initialState, action){
         console.log("Axios Post is Doing now");
         return {
             ...state,
-            keyword: action.payload
+            item: action.payload
         }
         default: 
             return state;

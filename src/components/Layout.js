@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Appbar from './Appbar';
+import Post from './Post';
 
 const styles = theme => ({
   root: {
@@ -26,7 +27,9 @@ const styles = theme => ({
           <Appbar />
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper}>
+            <Post />
+          </Paper>
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.paper}>xs=6</Paper>
