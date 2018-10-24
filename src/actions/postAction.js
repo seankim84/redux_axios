@@ -13,10 +13,10 @@ export const getPost = (page) => (dispatch) => {
         type: AXIOS_PENDING
     });
     return getPostApi(page)
-    .then((response) => {
+    .then((res) => {
         dispatch({
             type: AXIOS_SUCCESS,
-            payload: response
+            payload: res
         })
     })
     .catch(err => {
