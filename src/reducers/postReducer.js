@@ -3,8 +3,7 @@ import { AXIOS_PENDING, AXIOS_SUCCESS, AXIOS_FAILURE } from '../actions/types';
 const initialState = {
     pending: false,
     err: false,
-    item: [],
-    multi: {}
+    item: []
 };
 
 export default function(state = initialState, action){

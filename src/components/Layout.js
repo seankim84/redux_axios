@@ -26,13 +26,10 @@ const styles = theme => ({
         <Grid item xs={12}>
           <Appbar />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <Paper className={classes.paper}>
             <Post />
           </Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
         </Grid>
       </Grid>
     </div>

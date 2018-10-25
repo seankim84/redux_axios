@@ -1,31 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPost } from '../actions/postAction';
-import SimpleCard from '../components/Card';
+import * as pageActions from '../actions/pageAction'
+import { bindActionCreators } from 'redux';
+
 class Post extends Component {
 
-    componentWillMount() {
-        this.props.getPost();
-    }
 
     render(){
-        const postItem = this.props.posts.map(post => (
+        const { pagenumber } = this.props;
+        /* const postItem = this.props.posts.map(post => (
             <SimpleCard key={post._id}
                 headmain={post.source}
                 explain={post.snippet}
                 headline={post.headline.main}
-                pubdate={post.pub_date}
+                pubdate={post.pub_date} 
             />
-        ))
+        )) */
         return(
-            <div>{postItem}</div>
+            <div>
+                {pagenumber}
+                <div>
+                <button onClick={pageActions.increment}>+</button>
+                <button onClick={pageActions.decrement}>-</button>
+                </div>
+            </div>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    posts: state.post.item
+/*const mapStateToProps = state => ({
+    posts: state.post.item,
+    page: state.page
+})*/
+
+
+export default connect(
+    (state)=> ({
+    pagenumber: state.page
+}),
+(dispatch) => ({
+    PageActions: bindActionCreators(pageActions, dispatch)
 })
-
-
-export default connect(mapStateToProps,{ getPost })(Post);
+)(Post)
+//(mapStateToProps,{ getPost, PageActions })(Post);
