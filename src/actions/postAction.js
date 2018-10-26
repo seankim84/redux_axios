@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { AXIOS_PENDING, AXIOS_SUCCESS, AXIOS_FAILURE } from './types';
+import * as types from './types';
 
 const API_KEY = '5763846de30d489aa867f0711e2b031c';
 const API_URL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=${API_KEY}&q=vietnam`;
@@ -10,18 +10,18 @@ function getPostApi(page) {
 
 export const getPost = (page) => (dispatch) => {
     dispatch({
-        type: AXIOS_PENDING
+        type: types.AXIOS_PENDING
     });
     return getPostApi(page)
     .then((res) => {
         dispatch({
-            type: AXIOS_SUCCESS,
+            type: types.AXIOS_SUCCESS,
             payload: res
         })
     })
     .catch(err => {
         dispatch({
-            type: AXIOS_FAILURE,
+            type: types.AXIOS_FAILURE,
             payload: err
         });
     })

@@ -1,16 +1,9 @@
-import { handleActions, createAction } from 'redux-actions';
+import * as types from './types';
 
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
+export const increment = () => ({
+    type: types.INCREMENT
+});
 
-const initialState = {
-    page: 0
-};
-
-export const increment = createAction(INCREMENT);
-export const decrement = createAction(DECREMENT);
-
-export default handleActions({
-    [INCREMENT]: (state, action) => state + 1,
-    [DECREMENT]: (state, action) => state - 1
-}, initialState);
+export const decrement = () => ({
+    type: types.DECREMENT
+});

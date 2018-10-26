@@ -1,45 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as pageActions from '../actions/pageAction'
-import { bindActionCreators } from 'redux';
+import * as actions from '../actions/pageAction';
+import * as action from '../actions/postAction';
 
 class Post extends Component {
-
-
     render(){
-        const { pagenumber } = this.props;
-        /* const postItem = this.props.posts.map(post => (
-            <SimpleCard key={post._id}
-                headmain={post.source}
-                explain={post.snippet}
-                headline={post.headline.main}
-                pubdate={post.pub_date} 
-            />
-        )) */
+        const { page, onIncrement, onDecrement } = this.props;
         return(
             <div>
-                {pagenumber}
                 <div>
-                <button onClick={pageActions.increment}>+</button>
-                <button onClick={pageActions.decrement}>-</button>
+                {page}
+                <button onClick={ onIncrement }>+</button>
+                <button onClick={ onDecrement}>-</button>
                 </div>
             </div>
         )
     }
 }
 
-/*const mapStateToProps = state => ({
-    posts: state.post.item,
-    page: state.page
-})*/
+const mapStateToProps = (state) => ({ //combineReducer 참조
+    page: state.pageData.page,
+    pending: state.postData.pending,
+    err: state.postData.err,
+    item: state.postData.item
+});
 
-
-export default connect(
-    (state)=> ({
-    pagenumber: state.page
-}),
-(dispatch) => ({
-    PageActions: bindActionCreators(pageActions, dispatch)
+const mapDispatchToProps = (dispatch) => ({ // action 참조
+    onIncrement: () => dispatch(actions.increment()),
+    onDecrement: () => dispatch(actions.decrement()),
+    onGetPost: () => dispatch(action.getPost())  
 })
-)(Post)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
 //(mapStateToProps,{ getPost, PageActions })(Post);

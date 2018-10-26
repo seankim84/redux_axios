@@ -1,4 +1,4 @@
-import { AXIOS_PENDING, AXIOS_SUCCESS, AXIOS_FAILURE } from '../actions/types';
+import * as types from '../actions/types';
 
 const initialState = {
     pending: false,
@@ -6,15 +6,15 @@ const initialState = {
     item: []
 };
 
-export default function(state = initialState, action){
+export default function axiosPost(state = initialState, action){
     switch(action.type){
-        case AXIOS_PENDING: 
+        case types.AXIOS_PENDING: 
         console.log("Axios Pending");
         return {
             ...state,
             pending: false
         }
-        case AXIOS_SUCCESS:
+        case types.AXIOS_SUCCESS:
         console.log("Axios Post is Doing now");
         return {
             ...state,
@@ -22,7 +22,7 @@ export default function(state = initialState, action){
             err: false,
             item: action.payload.data.response.docs
         }
-        case AXIOS_FAILURE:
+        case types.AXIOS_FAILURE:
         console.log('Axios Failure')
         return {
             ...state,
