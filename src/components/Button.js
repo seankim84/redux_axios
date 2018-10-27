@@ -12,7 +12,7 @@ const styles = theme => ({
 function ContainedButtons(props) {
   const { classes, onClick, Pcounter } = props;
   return (
-    <div style={{display: "inline-block", flexDirection:"column", width: "auto", alignItems: "center"}}>
+    <div style={{display: "inline-block", flexDirection:"column", width: "auto", alignItems: "center", justifyContent:"center"}}>
       <Button onClick={onClick} variant="contained" color="primary" className={classes.button}>{Pcounter}</Button>
     </div>
   );

@@ -8,14 +8,24 @@ import ContainedButtons from './Button';
 class Post extends Component {
 
     componentDidMount() {
-        const { page, onGetPost } = this.props;
-        onGetPost(page);
+        const { page } = this.props;
+        this.getPost(page);
     }
 
     componentWillReceiveProps(nextProps){
-        const { onGetPost }  = this.props;
         if (this.props.page !== nextProps.page){
-            onGetPost(nextProps.page)
+            this.getPost(nextProps.page)
+        }
+    }
+
+    getPost = async (postId) => {
+        const { onGetPost } = this.props;
+    
+        try {
+            await onGetPost(postId);
+            console.log("Request Complete and do it")
+        } catch(e){
+            console.log("Error")
         }
     }
 
@@ -27,8 +37,8 @@ class Post extends Component {
                 <p>{page}</p>
                 <ContainedButtons onClick={onIncrement} Pcounter={"+"}></ContainedButtons>
                 <ContainedButtons onClick={onDecrement} Pcounter={"-"}></ContainedButtons>
-                { pending && <h2>Pending 중</h2>}
-                { err ? <h1>에러 발생</h1> : (
+                { pending && <h2>Loading....</h2>}
+                { err ? <h1>Err</h1> : (
                     <div>
                     {item.map(items => (
                         <SimpleCard key={items._id} 
