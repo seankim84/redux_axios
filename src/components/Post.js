@@ -1,17 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/pageAction';
-import * as action from '../actions/postAction';
+import * as action from '../actions/pageAction';
+import * as actions from '../actions/postAction'
+import SimpleCard from './Card';
+import ContainedButtons from './Button';
 
 class Post extends Component {
+
+    componentDidMount() {
+        const { page, onGetPost } = this.props;
+        onGetPost(page);
+    }
+
+    componentWillReceiveProps(nextProps){
+        const { onGetPost }  = this.props;
+        if (this.props.page !== nextProps.page){
+            onGetPost(nextProps.page)
+        }
+    }
+
     render(){
-        const { page, onIncrement, onDecrement } = this.props;
+        const { page, onIncrement, onDecrement, err, item, pending  } = this.props;
         return(
             <div>
                 <div>
-                {page}
-                <button onClick={ onIncrement }>+</button>
-                <button onClick={ onDecrement}>-</button>
+                <p>{page}</p>
+                <ContainedButtons onClick={onIncrement} Pcounter={"+"}></ContainedButtons>
+                <ContainedButtons onClick={onDecrement} Pcounter={"-"}></ContainedButtons>
+                { pending && <h2>Pending 중</h2>}
+                { err ? <h1>에러 발생</h1> : (
+                    <div>
+                    {item.map(items => (
+                        <SimpleCard key={items._id} 
+                                    headline={items.headline.main} 
+                                    pubdate={items.pub_date} 
+                                    explain={items.snippet}
+                                    > 
+                        </SimpleCard>
+                        ))}
+                    </div>
+                )}
                 </div>
             </div>
         )
@@ -26,9 +54,9 @@ const mapStateToProps = (state) => ({ //combineReducer 참조
 });
 
 const mapDispatchToProps = (dispatch) => ({ // action 참조
-    onIncrement: () => dispatch(actions.increment()),
-    onDecrement: () => dispatch(actions.decrement()),
-    onGetPost: () => dispatch(action.getPost())  
+    onIncrement: () => dispatch(action.increment()),
+    onDecrement: () => dispatch(action.decrement()),
+    onGetPost: (postId) => dispatch(actions.getPost(postId))  
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

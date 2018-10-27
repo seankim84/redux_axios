@@ -4,7 +4,7 @@ const initialState = {
     page: 0
 };
 
-function page( state= initialState, action ) {
+function getPage( state= initialState, action ) {
     switch(action.type) {
         case types.INCREMENT:
             return { 
@@ -21,4 +21,4 @@ function page( state= initialState, action ) {
     }
 }
 
-export default page;
+export default getPage;

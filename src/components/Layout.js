@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Appbar from './Appbar';
 import Post from './Post';
@@ -27,9 +26,7 @@ const styles = theme => ({
           <Appbar />
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
             <Post />
-          </Paper>
         </Grid>
       </Grid>
     </div>

@@ -1,12 +1,13 @@
 import * as types from '../actions/types';
 
 const initialState = {
+    postId: 0,
     pending: false,
     err: false,
     item: []
 };
 
-export default function axiosPost(state = initialState, action){
+export default function(state = initialState, action){
     switch(action.type){
         case types.AXIOS_PENDING: 
         console.log("Axios Pending");
