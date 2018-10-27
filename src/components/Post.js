@@ -35,6 +35,7 @@ class Post extends Component {
                                     headline={items.headline.main} 
                                     pubdate={items.pub_date} 
                                     explain={items.snippet}
+                                    website={items.web_url}
                                     > 
                         </SimpleCard>
                         ))}

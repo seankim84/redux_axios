@@ -25,7 +25,7 @@ const styles = {
 };
 
 function SimpleCard(props) {
-  const { classes, headmain, explain, headline, pubdate } = props;
+  const { classes, headmain, explain, headline, pubdate, website } = props;
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -45,7 +45,9 @@ function SimpleCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
+      <a target="blank" href={website} >
         <Button size="small">Learn More</Button>
+      </a>
       </CardActions>
     </Card>
   );
