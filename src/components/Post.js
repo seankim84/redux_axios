@@ -35,9 +35,9 @@ class Post extends Component {
             <div>
                 <div>
                 <p>{page}</p>
-                <ContainedButtons onClick={onIncrement} Pcounter={"+"}></ContainedButtons>
-                <ContainedButtons onClick={onDecrement} Pcounter={"-"}></ContainedButtons>
-                { pending && <h2>Loading....</h2>}
+                <ContainedButtons onClick={onDecrement} Pcounter={"Latest"}></ContainedButtons>
+                <ContainedButtons onClick={onIncrement} Pcounter={"Oldest"}></ContainedButtons>
+                { pending }
                 { err ? <h1>Err</h1> : (
                     <div>
                     {item.map(items => (
