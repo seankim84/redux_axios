@@ -4,6 +4,7 @@ import * as action from '../actions/pageAction';
 import * as actions from '../actions/postAction'
 import SimpleCard from './Card';
 import ContainedButtons from './Button';
+import Search from './Search';
 
 class Post extends Component {
 
@@ -30,10 +31,11 @@ class Post extends Component {
     }
 
     render(){
-        const { page, onIncrement, onDecrement, err, item, pending  } = this.props;
+        const { page, onIncrement, onDecrement, err, item, pending, pageId  } = this.props;
         return(
             <div>
                 <div>
+                <Search pageId={page}/>
                 <p>{page}</p>
                 <ContainedButtons onClick={onDecrement} Pcounter={"Latest"}></ContainedButtons>
                 <ContainedButtons onClick={onIncrement} Pcounter={"Oldest"}></ContainedButtons>
